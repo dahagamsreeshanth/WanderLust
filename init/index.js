@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
 
-
-const MONGO_URL = "mongodb+srv://Sreeshanth:sree123@cluster1.bhuhp7a.mongodb.net/?appName=Cluster1";
+require("dotenv").config({ path: "../.env" });
+const MONGO_URL = process.env.ATLASDB_URL;
 main().then(()=>{
     console.log("connected to db")
 }).catch(err=>{
@@ -15,6 +15,9 @@ async function main(){
 }
 
 const initDB =async () =>{
+
+
+    
 
     await Listing.deleteMany({});
     initData.data = initData.data.map((obj)=>
